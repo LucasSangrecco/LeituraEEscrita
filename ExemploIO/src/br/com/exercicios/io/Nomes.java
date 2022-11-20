@@ -8,8 +8,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class Nomes {
-    static BufferedWriter buffWrite;
-
 
     public static ArrayList<String> leitorNome(String path1) throws IOException {
         BufferedReader buffReadNome = new BufferedReader(new FileReader(path1));
@@ -47,6 +45,7 @@ public class Nomes {
         BufferedReader buffReadNomeESobrenome = new BufferedReader(new FileReader(path3));
         String linha = "";
         ArrayList<String> nomeESobrenome = new ArrayList<String>();
+
         for (int i=0;i<10;i++) {
             if (linha != null) {
                 linha = buffReadNomeESobrenome.readLine();
@@ -59,15 +58,15 @@ public class Nomes {
         return nomeESobrenome;
     }
 
-    public static void escritorNomeESobrenome (String path, ArrayList<String> nomes, ArrayList<String> sobrenomes) throws IOException{
-        for (int i=0;i<10;i++) {
-            buffWrite = new BufferedWriter(new FileWriter(path));
-            buffWrite.append(" ");
-        }
+    public static void escritorNomeESobrenome (String path, ArrayList<String> nome,ArrayList<String> sobrenome) throws IOException{
+        BufferedWriter buffWrite = new BufferedWriter(new FileWriter(path));
 
-    }
-    public static void fecharBuff() throws  IOException{
+        for (int i=0;i<10;i++) {
+                String linha = nome.get(i) + " " + sobrenome.get(i);
+                buffWrite.append(linha + "\n");
+        }
         buffWrite.close();
+
     }
 
 }
